@@ -131,7 +131,22 @@ Out[36]: <Post: 두번째글(2)>
 In [37]: type(post2.author)
 Out[37]: django.contrib.auth.models.User
 
-In [38]:
+In [38]: me = User.objects.get(username='python')
+
+In [39]: me
+Out[39]: <User: python>
+
+In [40]: Post.objects.create(author=me,title='sample',text='sample text')
+Out[40]: <Post: sample(4)>
+
+In [41]: Post.objects.all()
+Out[41]: <QuerySet [<Post: 첫번째글(1)>, <Post: 두번째글(2)>, <Post: 세번째글(3)>, <Post: sample(4)>]>
+
+In [42]: post4 = Post.objects.get(id=4)
+
+In [43]: print(post4.title,post4.text)
+sample sample text
+
 
 
 
