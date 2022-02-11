@@ -1,0 +1,112 @@
+C:\mypython\mydjango>python manage.py shell
+Python 3.8.8 (default, Apr 13 2021, 15:08:03) [MSC v.1916 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.22.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from blog.models import Post
+
+In [2]: Post.objects.all()
+Out[2]: <QuerySet [<Post: 첫번째글1>, <Post: 두번째글2>, <Post: 세번째글3>]>
+
+In [3]: exit()
+
+C:\mypython\mydjango>python manage.py shell
+Python 3.8.8 (default, Apr 13 2021, 15:08:03) [MSC v.1916 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.22.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from blog.models import Post
+
+In [2]: Post.objects.all()
+Out[2]: <QuerySet [<Post: 첫번째글(1)>, <Post: 두번째글(2)>, <Post: 세번째글(3)>]>
+
+In [3]: type(Post.objects.all())
+Out[3]: django.db.models.query.QuerySet
+
+In [4]: for post in Post.objects.all():
+   ...:     print(type(post), post)
+   ...:
+<class 'blog.models.Post'> 첫번째글(1)
+<class 'blog.models.Post'> 두번째글(2)
+<class 'blog.models.Post'> 세번째글(3)
+
+In [5]: posts = Post.objects.all()
+
+In [6]: posts
+Out[6]: <QuerySet [<Post: 첫번째글(1)>, <Post: 두번째글(2)>, <Post: 세번째글(3)>]>
+
+In [7]: for post in posts:
+   ...:     print(post.title, post.id, post.text, post.created_date)
+   ...:
+첫번째글 1 첫번째글 내용 2022-02-11 00:16:04+00:00
+두번째글 2 두번째글 내용 2022-02-11 00:16:51+00:00
+세번째글 3 세번째글 내용 2022-02-11 01:34:46+00:00
+
+In [8]: posts[0]
+Out[8]: <Post: 첫번째글(1)>
+
+In [9]: posts[0].title
+Out[9]: '첫번째글'
+
+In [10]: posts[2].text
+Out[10]: '세번째글 내용'
+
+In [11]: In [11]:
+
+In [11]: from django.contrib.auth.models import User
+
+In [12]:
+
+In [12]: User.objects.all()
+Out[12]: <QuerySet [<User: python>]>
+
+In [13]: User.objects.get(username='python')
+Out[13]: <User: python>
+
+In [14]: me = User.objects.get(username='python')
+
+In [15]: me
+Out[15]: <User: python>
+
+In [16]: me.id
+Out[16]: 1
+
+In [17]: me.username
+Out[17]: 'python'
+
+In [18]: me.password
+Out[18]: 'pbkdf2_sha256$216000$NBIjahWwnYAc$ugqFzn04VTAKGRymd88KWhBKg7MyWCI4zRGE7+nMCuc='
+
+In [19]: me.email
+Out[19]: 'aa@aa.com'
+
+In [20]: post1 = Post.objects.get(title='첫번째글')
+
+In [21]: post1
+Out[21]: <Post: 첫번째글(1)>
+
+In [22]: post1.id
+Out[22]: 1
+
+In [23]: post1.title
+Out[23]: '첫번째글'
+
+In [24]: post1.author
+Out[24]: <User: python>
+
+In [25]: post.author.id
+Out[25]: 1
+
+In [26]: post.author.username
+Out[26]: 'python'
+
+In [27]: post1.author.username
+Out[27]: 'python'
+
+In [28]: post1.author.password
+Out[28]: 'pbkdf2_sha256$216000$NBIjahWwnYAc$ugqFzn04VTAKGRymd88KWhBKg7MyWCI4zRGE7+nMCuc='
+
+In [29]: post1.author.email
+Out[29]: 'aa@aa.com'
+
+In [30]:
