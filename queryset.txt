@@ -147,7 +147,77 @@ In [42]: post4 = Post.objects.get(id=4)
 In [43]: print(post4.title,post4.text)
 sample sample text
 
+In [44]: Post.objects.filter(title__contains='sample')
+Out[44]: <QuerySet [<Post: sample(4)>]>
 
+In [45]: from django.utils import timezone
 
+In [46]: timezone.now()
+Out[46]: datetime.datetime(2022, 2, 11, 4, 14, 21, 944672, tzinfo=<UTC>)
+
+In [47]: Post.objects.filter(published_date__lte = timezone.now())
+Out[47]: <QuerySet [<Post: 두번째글(2)>, <Post: 세번째글(3)>]>
+
+In [49]: for p in Post.objects.all():
+    ...:     print(p.id,p.published_date)
+    ...:
+1 None
+2 2022-02-11 00:17:07+00:00
+3 2022-02-11 01:35:09+00:00
+4 None
+
+In [50]: p1 = Post.objects.get(id=1)
+
+In [51]: p1.publish()
+In [52]: for p in Post.objects.all():
+    ...:     print(p.id,p.published_date)
+    ...:
+1 2022-02-11 04:22:18.979528+00:00
+2 2022-02-11 00:17:07+00:00
+3 2022-02-11 01:35:09+00:00
+4 None
+
+In [53]: timezone.now()
+Out[53]: datetime.datetime(2022, 2, 11, 4, 24, 44, 894168, tzinfo=<UTC>)
+
+In [54]: print(p1.id, p1.pk)
+1 1
+
+In [55]: Post.objects.order_by('created_date')
+Out[55]: <QuerySet [<Post: 첫번째글(1)>, <Post: 두번째글(2)>, <Post: 세번째글(3)>, <Post: sample(4)>]>
+
+In [56]: Post.objects.order_by('-created_date')
+Out[56]: <QuerySet [<Post: sample(4)>, <Post: 세번째글(3)>, <Post: 두번째글(2)>, <Post: 첫번째글(1)>]>
+
+In [57]: Post.objects.filter(title__contains='글')
+Out[57]: <QuerySet [<Post: 첫번째글(1)>, <Post: 두번째글(2)>, <Post: 세번째글(3)>]>
+
+In [58]: Post.objects.filter(title__contains='글').order_by('-created_date')
+Out[58]: <QuerySet [<Post: 세번째글(3)>, <Post: 두번째글(2)>, <Post: 첫번째글(1)>]>
+
+In [59]: from django.shortcuts import get_object_or_404
+
+In [60]: get_object_or_404(Post,pk=1)
+Out[60]: <Post: 첫번째글(1)>
+
+In [61]: post_obj = get_object_or_404(Post,pk=1)
+
+In [62]:
+
+In [62]: type(post_obj)
+Out[62]: blog.models.Post
+
+In [63]: post_404 = get_object_or_404(Post,pk=100)
+In [64]: post3 = get_object_or_404(Post,pk=3)
+
+In [65]: post3
+Out[65]: <Post: 세번째글(3)>
+
+In [66]: post3.delete()
+
+Out[66]: (1, {'blog.Post': 1})
+
+In [67]: Post.objects.all()
+Out[67]: <QuerySet [<Post: 첫번째글(1)>, <Post: 두번째글(2)>, <Post: sample(4)>]>
 
 
