@@ -109,4 +109,30 @@ Out[28]: 'pbkdf2_sha256$216000$NBIjahWwnYAc$ugqFzn04VTAKGRymd88KWhBKg7MyWCI4zRGE
 In [29]: post1.author.email
 Out[29]: 'aa@aa.com'
 
-In [30]:
+In [30]: post2 = Post.objects.get(id=2)
+
+In [31]: post2
+Out[31]: <Post: 두번째글(2)>
+
+In [32]: posts
+Out[32]: <QuerySet [<Post: 첫번째글(1)>, <Post: 두번째글(2)>, <Post: 세번째글(3)>]>
+
+In [33]: posts[1]
+Out[33]: <Post: 두번째글(2)>
+
+In [34]: print(post2.title, post2.text, post2.created_date, post2.author.username, post2.author.email)
+두번째글 두번째글 내용 2022-02-11 00:16:51+00:00 python aa@aa.com
+
+In [35]: post2_1 = Post.objects.get(title='두번째글')
+
+In [36]: post2_1
+Out[36]: <Post: 두번째글(2)>
+
+In [37]: type(post2.author)
+Out[37]: django.contrib.auth.models.User
+
+In [38]:
+
+
+
+
