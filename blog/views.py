@@ -9,7 +9,7 @@ def post_list(request):
     return HttpResponse('''
         <h2>Welcome {name}</h2>
         <p>Http Method : {method}</p>
-        <p>Http Encoding : {encod}</p>
+        <p>Http headers User-Agent : {header}</p>
         <p>Http Path : {mypath}</p>        
-    '''.format(name=my_name, method=http_method, encod=request.encoding, mypath=request.path))
+    '''.format(name=my_name, method=http_method, header=request.headers['user-agent'], mypath=request.path))
 
