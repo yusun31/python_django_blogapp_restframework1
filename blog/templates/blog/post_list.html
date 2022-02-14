@@ -16,16 +16,22 @@
     <!-- HTML 주석 -->
     {# 파이썬 주석1 #}
     {% comment %} 파이썬 주석2 {% endcomment %}
-
-    {% for post in post_list %}
-        <div>
-            <p>published: {{ post.published_date }}</p>
-            <h1><a href="">{{ post.title }}</a></h1>
-            <p>{{ post.text| linebreaksbr }}</p>
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+                {% for post in post_list %}
+                    <div class="post">
+                        <div class="date">
+                            <p>published: {{ post.published_date }}</p>
+                        </div>
+                        <h1><a href="">{{ post.title }}</a></h1>
+                        <p>{{ post.text| linebreaksbr }}</p>
+                    </div>
+                {% empty %}
+                    <p>Blog(글)이 없습니다.</p>
+                {% endfor %}
+            </div>
         </div>
-    {% empty %}
-        <p>Blog(글)이 없습니다.</p>
-    {% endfor %}
-
+    </div>
 </body>
 </html>
