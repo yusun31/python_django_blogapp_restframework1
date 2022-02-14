@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>Django Blog</title>
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
 </head>
 <body>
     <h1>Welcome 장고!!</h1>
@@ -16,6 +18,8 @@
             <h1><a href="">{{ post.title }}</a></h1>
             <p>{{ post.text| linebreaksbr }}</p>
         </div>
+    {% empty %}
+        <p>Blog(글)이 없습니다.</p>
     {% endfor %}
 
 </body>
