@@ -6,6 +6,8 @@
 </head>
 <body>
     <h1>Welcome 장고!!</h1>
-    {{ post_list }}
+    {% for post in post_list %}
+        {{ post }}
+    {% endfor %}
 </body>
-</html>s
+</html>
