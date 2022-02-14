@@ -4,14 +4,19 @@
     <meta charset="UTF-8">
     <title>Django Blog</title>
 </head>
-<body>
+<bodㄴy>
     <h1>Welcome 장고!!</h1>
+    <!-- HTML 주석 -->
+    {# 파이썬 주석1 #}
+    {% comment %} 파이썬 주석2 {% endcomment %}
+
     {% for post in post_list %}
         <div>
             <p>published: {{ post.published_date }}</p>
             <h1><a href="">{{ post.title }}</a></h1>
-            <p>{{ post.text }}</p>
+            <p>{{ post.text| linebreaksbr }}</p>
         </div>
     {% endfor %}
-</body>
+
+</bodㄴy>
 </html>
