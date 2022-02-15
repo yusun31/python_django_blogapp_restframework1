@@ -8,7 +8,7 @@ from .forms import PostModelForm
 # 글등록
 def post_new(request):
     post_form = PostModelForm()
-    return render(request, 'blog/post_edit.html', {'form': post_form})
+    return render(request, 'blog/post_edit.html', {'postform': post_form})
 
 # 글상세정보
 def post_detail(request,pk):
