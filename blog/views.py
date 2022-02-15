@@ -8,7 +8,19 @@ from .forms import PostModelForm, PostForm
 # 글등록(Form) 사용
 def post_new(request):
     if request.method == 'POST':
-        pass
+        form = PostForm(request.POST)
+        if form.is_valid():
+            # 검증을 통과한 입력 데이터
+            print(form.cleaned_data)
+            clean_data_dict = form.cleaned_data
+            # create() 함수가 호출되면 등록처리가 이루어진다.
+            post = Post.objects.create(
+                author=request.user,
+                title = clean_data_dict['title'],
+                text=clean_data_dict['text'],
+                published_date=timezone.now()
+            )
+            return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm()
     return render(request, 'blog/post_edit.html', {'postform': form})
