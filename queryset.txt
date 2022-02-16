@@ -220,4 +220,26 @@ Out[66]: (1, {'blog.Post': 1})
 In [67]: Post.objects.all()
 Out[67]: <QuerySet [<Post: 첫번째글(1)>, <Post: 두번째글(2)>, <Post: sample(4)>]>
 
+------------------------Comment 추가-------------------------
+In [1]: from blog.models import Post, Comment
+In [2]: Post.objects.all()
+Out[2]: <QuerySet [<Post: 첫번째글(1)>, <Post: 두번째글(2)>, <Post: sample(4)>, <Post: 파이썬언어(5)>, <Post: eee(6)>, <Post: test(7)>, <Post: 144(8)>]>
+
+In [3]: Comment.objects.all()
+Out[3]: <QuerySet [<Comment: 첫번째글의 댓글입니다.(1)>, <Comment: 두번째글의 댓글(2)>, <Comment: 테스트댓글(3)>, <Comment: 길동이 단 댓글(4)>]>
+
+In [5]: post1 = Post.objects.get(id=1)
+
+In [6]: post1
+Out[6]: <Post: 첫번째글(1)>
+
+In [7]: post1.comments.all()
+
+Out[7]: <QuerySet [<Comment: 첫번째글의 댓글입니다.(1)>, <Comment: 테스트댓글(3)>]>
+In [9]: for comm in post1.comments.all():
+   ...:     print(comm.id, comm.author, comm.text, comm.approved_comment)
+   ...:
+   ...:
+1 둘리 첫번째글의 댓글입니다. False
+3 test 테스트댓글 True
 
