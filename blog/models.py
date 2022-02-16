@@ -26,3 +26,24 @@ class Post(models.Model):
     def publish(self):
         self.published_date = timezone.now()
         self.save()
+
+# 댓글(Comment) Model 클래스 선언
+class Comment(models.Model):
+    # 참조하는 Post 객체
+    post = models.ForeignKey('blog.Post',on_delete=models.CASCADE, related_name='comments')
+    # 작성자
+    author = models.CharField(max_length=200)
+    # 내용
+    text = models.TextField()
+    # 작성일
+    created_date = models.DateTimeField(default=timezone.now)
+    # 승인여부
+    approved_comment = models.BooleanField(default=False)
+
+    # 댓글승인
+    def approve(self):
+        self.approved_comment = True
+        self.save()
+        
+    def __str__(self):
+        return self.text
