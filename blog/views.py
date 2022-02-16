@@ -5,6 +5,15 @@ from django.utils import timezone
 from .models import Post
 from .forms import PostModelForm, PostForm
 
+# 글수정(ModelForm) 사용
+def post_edit(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == 'POST':
+        pass
+    else:
+        form = PostModelForm(instance=post)
+    return render(request, 'blog/post_edit.html', {'postform': form})
+
 # 글등록(Form) 사용
 def post_new(request):
     if request.method == 'POST':
