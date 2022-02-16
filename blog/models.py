@@ -26,6 +26,9 @@ class Post(models.Model):
     def publish(self):
         self.published_date = timezone.now()
         self.save()
+    # Post가 참조하는 Comment 중에서 승인된 Comment만 필터링하기 
+    def approved_comments(self):
+        return self.comments.filter(approved_comment=True)
 
 # 댓글(Comment) Model 클래스 선언
 class Comment(models.Model):
