@@ -1,5 +1,11 @@
 from django import forms
-from .models import Post
+from .models import Post, Comment
+
+# ModelForm을 상속받는 CommentModelForm 클래스 정의
+class CommentModelForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('author', 'text',)   # '__all__'
 
 # ModelForm을 상속받는 PostModelForm 클래스 정의
 class PostModelForm(forms.ModelForm):
