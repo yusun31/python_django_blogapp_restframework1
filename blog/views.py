@@ -10,7 +10,13 @@ from .forms import PostModelForm, PostForm, CommentModelForm
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
-        pass
+        form = CommentModelForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            # 새로 등록하는 comment가 참조하는 post 객체를 저장
+            comment.post = post
+            comment.save()
+            return redirect('post_detail', pk=post.pk)
     else:
         form = CommentModelForm()
 
