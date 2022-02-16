@@ -7,12 +7,14 @@ from .models import Post
 from .forms import PostModelForm, PostForm
 
 # 글삭제
+@login_required
 def post_remove(request, pk):
     post = Post.objects.get(pk=pk)
     post.delete()
     return redirect('post_list_home')
 
 # 글수정(ModelForm) 사용
+@login_required
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == 'POST':
@@ -54,6 +56,7 @@ def post_new(request):
     return render(request, 'blog/post_edit.html', {'postform': form})
 
 # 글등록 (ModelForm 사용)
+@login_required
 def post_new_modelform(request):
     if request.method == 'POST':
         # 등록을 요청하는 경우
