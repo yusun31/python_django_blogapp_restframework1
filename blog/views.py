@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
@@ -32,6 +33,7 @@ def post_edit(request, pk):
     return render(request, 'blog/post_edit.html', {'postform': form})
 
 # 글등록(Form) 사용
+@login_required
 def post_new(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
