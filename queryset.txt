@@ -274,3 +274,14 @@ In [23]: comment2.approved_comment
 In [24]: comment2.save()
 
 In [25]: comment2.approved_comment
+
+In [2]: post = Post.objects.get(id=1)
+
+In [3]: post.comments.count()
+Out[3]: 3
+
+In [4]: post.comments.filter(approved_comment=True).count()
+Out[4]: 2
+
+In [5]: post.comments.filter(approved_comment=True)
+Out[5]: <QuerySet [<Comment: 첫번째글의 댓글입니다.(1)>, <Comment: 테스트댓글(3)>]>
