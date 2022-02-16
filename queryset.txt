@@ -240,6 +240,9 @@ In [9]: for comm in post1.comments.all():
    ...:     print(comm.id, comm.author, comm.text, comm.approved_comment)
    ...:
    ...:
-1 둘리 첫번째글의 댓글입니다. False
-3 test 테스트댓글 True
 
+In [10]: post2 = Post.objects.get(id=2)
+
+In [11]: post2.comments.all()
+
+In [12]: post2.comments.count()
