@@ -250,3 +250,15 @@ In [12]: post2.comments.count()
 In [13]: for com in post2.comments.all():
     ...:     print(com.id, com.text, com.created_date, com.post)
     ...:
+In [14]: for com in post2.comments.all():
+    ...:     print(com.id, com.approved_comment)
+    ...:
+
+In [15]: for com in post2.comments.all():
+    ...:     com.approve()
+    ...:
+
+In [16]: for com in post2.comments.all():
+    ...:     print(com.id, com.approved_comment)
+    ...:
+
