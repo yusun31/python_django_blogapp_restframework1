@@ -261,4 +261,9 @@ In [15]: for com in post2.comments.all():
 In [16]: for com in post2.comments.all():
     ...:     print(com.id, com.approved_comment)
     ...:
+In [17]: comment2 = Comment.objects.get(id=2)
+
+In [18]: comment2
+
+In [19]: print(comment2.author, comment2.approved_comment, comment2.post, comment2.post.id, comment2.post.author)
 
