@@ -285,3 +285,9 @@ Out[4]: 2
 
 In [5]: post.comments.filter(approved_comment=True)
 Out[5]: <QuerySet [<Comment: 첫번째글의 댓글입니다.(1)>, <Comment: 테스트댓글(3)>]>
+
+In [6]: post.comments.filter(approved_comment=False)
+Out[6]: <QuerySet [<Comment: 승인되지 않은 댓글(6)>]>
+
+In [7]: post.comments.filter(approved_comment=False).count()
+Out[7]: 1
