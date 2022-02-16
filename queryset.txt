@@ -267,3 +267,10 @@ In [18]: comment2
 
 In [19]: print(comment2.author, comment2.approved_comment, comment2.post, comment2.post.id, comment2.post.author)
 
+In [22]: comment2.approved_comment = False
+
+In [23]: comment2.approved_comment
+
+In [24]: comment2.save()
+
+In [25]: comment2.approved_comment
