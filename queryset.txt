@@ -246,3 +246,7 @@ In [10]: post2 = Post.objects.get(id=2)
 In [11]: post2.comments.all()
 
 In [12]: post2.comments.count()
+
+In [13]: for com in post2.comments.all():
+    ...:     print(com.id, com.text, com.created_date, com.post)
+    ...:
