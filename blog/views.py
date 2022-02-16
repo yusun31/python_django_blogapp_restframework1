@@ -5,6 +5,12 @@ from django.utils import timezone
 from .models import Post
 from .forms import PostModelForm, PostForm
 
+# 글삭제
+def post_remove(request, pk):
+    post = Post.objects.get(pk=pk)
+    post.delete()
+    return redirect('post_list_home')
+
 # 글수정(ModelForm) 사용
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
