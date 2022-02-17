@@ -119,7 +119,7 @@ def post_detail(request,pk):
 def post_list(request):
     post_queryset = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     # Paginator 객체생성
-    paginator = Paginator(post_queryset,2)
+    paginator = Paginator(post_queryset, 2)
 
     try:
         # page number(페이지번호)를 화면에서 쿼리스트링으로 전달받는다
