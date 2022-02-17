@@ -22,10 +22,10 @@ INSTALLED_APPS = [
 #### django REST framework 가 제공하는 TokenAuthentication을 사용해서 인증을 처리
 
 ##### 로그인과정 (token authentication)
-* 1. 화면에서 사용자가 username, password를 입력하서 서버로 보낸다.
-* 2. username, password 가 맞다면 고유한 TOKEN을 발행하고 토큰을 response로 보낸다
-* 3. 다른 API를 사용할 때마다 header에 TOKEN을 같이 서버에 보낸다.
-* 4. 서버는 TOKEN 을 확인해서 token 이 valid 한지 확인한 뒤 response를 보낸다.
+* 1 화면에서 사용자가 username, password를 입력하서 서버로 보낸다.
+* 2 username, password 가 맞다면 고유한 TOKEN을 발행하고 토큰을 response로 보낸다
+* 3 다른 API를 사용할 때마다 header에 TOKEN을 같이 서버에 보낸다.
+* 4 서버는 TOKEN 을 확인해서 token 이 valid 한지 확인한 뒤 response를 보낸다.
 
 #### settings.py INSTALLED APPS 에 추가해야함
 ```
