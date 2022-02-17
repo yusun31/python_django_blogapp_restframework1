@@ -1,8 +1,16 @@
+from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
+from rest_framework.authtoken.models import Token
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND, HTTP_200_OK
+
 from .models import Post, Comment
 from .forms import PostModelForm, PostForm, CommentModelForm
 
@@ -151,3 +159,26 @@ def post_list_first(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     return render(request, 'blog/post_list.html', {'post_list': posts})
 
+
+@api_view(['POST'])
+@permission_classes((AllowAny,))
+def login(request):
+    username = request.data.get('username')
+    #email = request.data.get('email')
+    password = request.data.get('password')
+
+    if username is None or password is None:
+        return Response({'error': 'Please provide both username and password'},
+                        status=HTTP_400_BAD_REQUEST)
+
+    # 여기서 authenticate로 유저 validate
+    user = authenticate(username=username, password=password)
+    print('>>>> user ', user)
+
+    if not user:
+        return Response({'error': 'Invalid credentials'}, status=HTTP_404_NOT_FOUND)
+
+    # user 로 토큰 발행
+    token, _ = Token.objects.get_or_create(user=user)
+
+    return Response({'token': token.key}, status=HTTP_200_OK)
