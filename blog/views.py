@@ -118,8 +118,20 @@ def post_detail(request,pk):
 # 글목록 Pagination
 def post_list(request):
     post_queryset = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+    # Paginator 객체생성
+    paginator = Paginator(post_queryset,2)
 
-    #return render(request, 'blog/post_list.html', {'post_list': posts})
+    try:
+        # page number(페이지번호)를 화면에서 쿼리스트링으로 전달받는다
+        page_number = request.GET.get('page')
+        # 전달받은 페이지번호로 Page객체생성
+        page = paginator.page(page_number)
+    except PageNotAnInteger:
+        page = paginator.page(1)
+    except EmptyPage:
+        page = paginator.page(paginator.num_pages)
+
+    return render(request, 'blog/post_list.html', {'post_list': page})
 
 
 # Views 내에 선언된 함수로 인자로 HttpRequest 라는 객체를 Django가 전달해준다.
