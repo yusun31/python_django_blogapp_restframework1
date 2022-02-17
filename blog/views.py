@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .models import Post, Comment
 from .forms import PostModelForm, PostForm, CommentModelForm
 
@@ -115,9 +115,16 @@ def post_detail(request,pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'blog/post_detail.html', {'post_key': post})
 
+# 글목록 Pagination
+def post_list(request):
+    post_queryset = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+
+    #return render(request, 'blog/post_list.html', {'post_list': posts})
+
+
 # Views 내에 선언된 함수로 인자로 HttpRequest 라는 객체를 Django가 전달해준다.
 # 글목록
-def post_list(request):
+def post_list_first(request):
     my_name = '장고웹프레임워크'
     http_method = request.method
 
