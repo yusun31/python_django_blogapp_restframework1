@@ -295,3 +295,17 @@ Out[7]: 1
 ------------------------Pagination-------------------------
 In [1]: from django.core.paginator import Paginator
 In [2]: objects = ['java','boot','jpa','python','django']
+In [4]: p = Paginator(objects,2)
+
+In [5]: type(p)
+Out[5]: django.core.paginator.Paginator
+
+In [6]: p.count
+Out[6]: 5
+
+In [7]: p.num_pages
+Out[7]: 3
+
+In [8]: p.page_range
+Out[8]: range(1, 4)
+
