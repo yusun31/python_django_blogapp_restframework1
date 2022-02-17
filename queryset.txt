@@ -291,3 +291,7 @@ Out[6]: <QuerySet [<Comment: 승인되지 않은 댓글(6)>]>
 
 In [7]: post.comments.filter(approved_comment=False).count()
 Out[7]: 1
+
+------------------------Pagination-------------------------
+In [1]: from django.core.paginator import Paginator
+In [2]: objects = ['java','boot','jpa','python','django']
