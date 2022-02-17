@@ -1,5 +1,5 @@
 
-## django REST framework 가 제공하는 TokenAuthentication을 사용해서 인증을 처리
+##### django REST framework 가 제공하는 TokenAuthentication을 사용해서 인증을 처리
 
 #### django REST framework 설치 using pip
 ```
@@ -17,8 +17,8 @@ INSTALLED_APPS = [
 * 전체목록조회 GET http://localhost:8000/blog/posts
 * 1개 조회 GET http://localhost:8000/blog/posts/1
 * 등록 POST http://localhost:8000/blog/posts/  ( / 슬래쉬 꼭 )
-* 수정 PUT http://localhost:8000/blog/posts/1/  ( / 슬래쉬 꼭)
-* 삭제 DELETE http://localhost:8000/blog/posts/1
+* 수정 PUT http://localhost:8000/blog/posts/1/  ( / 슬래쉬 꼭 )
+* 삭제 DELETE http://localhost:8000/blog/posts/1/ ( / 슬래쉬 꼭 )
 
 
 #### 로그인과정 (token authentication)
