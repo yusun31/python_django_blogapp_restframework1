@@ -309,3 +309,31 @@ Out[7]: 3
 In [8]: p.page_range
 Out[8]: range(1, 4)
 
+In [9]: for val in p.page_range:
+   ...:     print(val)
+   ...:
+
+In [11]: page1 = p.page(1)
+
+In [12]: type(page1)
+Out[12]: django.core.paginator.Page
+
+In [13]: page1.object_list
+Out[13]: ['java', 'boot']
+
+In [14]: page1.has_previous()
+Out[14]: False
+
+In [15]: page1.has_next()
+Out[15]: True
+
+In [16]: page2 = p.page(2)
+
+In [17]: page2.object_list
+Out[17]: ['jpa', 'python']
+
+In [18]: page2.has_previous()
+Out[18]: True
+
+In [19]: page2.has_next()
+Out[19]: True
