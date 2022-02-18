@@ -34,12 +34,12 @@ INSTALLED_APPS = [
     'rest_framework.authtoken'
 ]
 
-REST_FRAMEWORK = [
-	'DEFAULT_AUTHENTICATION_CLASSES': [
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAuthenticated',)
-]
+}
 ```
 
 #### settings.py 를 수정한 후에는 migrate 를 실행한다
