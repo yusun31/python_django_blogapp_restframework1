@@ -160,12 +160,13 @@ def post_list_first(request):
     return render(request, 'blog/post_list.html', {'post_list': posts})
 
 
+#http://localhost:8000/blog/api/login/?username=python&password=python
 @api_view(['POST'])
 @permission_classes((AllowAny,))
 def login(request):
-    username = request.data.get('username')
+    username = request.GET.get('username')
     #email = request.data.get('email')
-    password = request.data.get('password')
+    password = request.GET.get('password')
 
     if username is None or password is None:
         return Response({'error': 'Please provide both username and password'},

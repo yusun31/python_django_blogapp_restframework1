@@ -6,7 +6,7 @@ from blog.models import Post, Comment
 class PostSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Post
-        fields = ('title','text',)
+        fields = ('id','title','text',)
 
 class CommentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
