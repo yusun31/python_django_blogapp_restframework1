@@ -90,8 +90,8 @@ DATABASES = {
         'NAME': 'django_db',  # DB명
         'USER': 'python',  # 데이터베이스 계정
         'PASSWORD': 'python',  # 계정 비밀번호
-        # 'HOST': 'mysql-svc',  # 데이테베이스 IP
-         'HOST': 'localhost',
+        'HOST': 'mysql-svc',  # 데이테베이스 IP
+        # 'HOST': 'localhost',
         'PORT': '3306',  # 데이터베이스 port
     }
 }
