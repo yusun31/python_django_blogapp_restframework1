@@ -25,8 +25,10 @@ urlpatterns = [
     path('comment/<int:pk>/approve/', views.comment_approve, name='comment_approve'),
     # http://localhost:8000/blog/comment/2/remove
     path('comment/<int:pk>/remove/', views.comment_remove, name='comment_remove'),
+    # http://localhost:8000/blog/regist/
+    path('regist/', views.register_user, name='register_user'),
 
     path('', include(router.urls)),
-    #path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
     path('api/login/', views.login, name='login')
 ]

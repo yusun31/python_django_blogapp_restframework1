@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.contrib.auth.models import User
 
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view, permission_classes
@@ -13,6 +14,7 @@ from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_404_NOT_FOUND, HTTP
 
 from .models import Post, Comment
 from .forms import PostModelForm, PostForm, CommentModelForm
+
 
 # 댓글승인
 @login_required
@@ -30,7 +32,9 @@ def comment_remove(request, pk):
     comment.delete()
     return redirect('post_detail', pk=post_pk)
 
+
 # 댓글등록
+@login_required
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
@@ -118,10 +122,12 @@ def post_new_modelform(request):
         post_form = PostModelForm()
     return render(request, 'blog/post_edit.html', {'postform': post_form})
 
+
 # 글상세정보
 def post_detail(request,pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'blog/post_detail.html', {'post_key': post})
+
 
 # 글목록 Pagination
 def post_list(request):
@@ -183,3 +189,16 @@ def login(request):
     token, _ = Token.objects.get_or_create(user=user)
 
     return Response({'token': token.key}, status=HTTP_200_OK)
+
+
+# 회원가입
+def register_user(request):
+    if request.method == 'POST':
+        new_user=User.objects.create_user(
+            username=request.POST['name'],
+            password=request.POST['pass'],
+            email = request.POST['email']
+        )
+        new_user.save()
+        return redirect('post_list_home')
+    return render(request, 'registration/register.html')
