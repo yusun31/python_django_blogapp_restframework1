@@ -8,9 +8,20 @@
             <div style="text-align: center">
                 <form method="POST" class="post-form">
                 {% csrf_token %}
-                이름<input type="text" default="name" name="name" id="name" required >
-                이메일<input type="text" default="email" name="email" id="email" required >
-                비밀번호<input type="text" default="password" name="pass" id="pass" required >
+                <table class ="table table-bordered table-hover">
+                    <tr>
+                        <td> Username </td>
+                        <td><input type="text" default="name" name="name" id="name" required ></td>
+                    </tr>
+                    <tr>
+                        <td> email </td>
+                        <td><input type="text" default="email" name="email" id="email" required ></td>
+                    </tr>
+                    <tr>
+                        <td> password </td>
+                        <td><input type="text" default="password" name="pass" id="pass" required ></td>
+                    </tr>
+                </table>
                 <button type="submit" class="save btn btn-primary">등록</button>
             </form method="POST">
             </div>
